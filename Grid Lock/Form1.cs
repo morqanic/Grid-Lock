@@ -278,7 +278,7 @@ namespace Grid_Lock
                 MessageBox.Show("Congrat's My Code Works!!!");
             }
         }
-        private void UpOrDown(object sender, EventArgs e, string color, int a, int b, int c, int d)
+        private void UpOrLeft(object sender, EventArgs e, string color, int a, int b, int c, int d)
         {
             bool flag = false;
             for (int i = 1; i < 6; i++)
@@ -301,13 +301,13 @@ namespace Grid_Lock
                             }
                             if (gameBoard[i - 1, j].BackColor == Color.White)
                             {
-                                MoveUpOrDown(this, e, comboBoxColour.Text);
+                                MoveUpOrLeft(this, e, comboBoxColour.Text, a, b, c, d);
                                 CheckWin(i - 1, j);
                             }
                         }
                         else if (gameBoard[i - 1, j].BackColor == Color.White)
                         {
-                            MoveUpOrDown(this, e, comboBoxColour.Text);
+                            MoveUpOrLeft(this, e, comboBoxColour.Text, a, b, c, d);
                         }
                         flag = true;
                         break;
@@ -315,7 +315,7 @@ namespace Grid_Lock
                 }
             }
         }
-        private void MoveUpOrDown(object sender, EventArgs e, string color, int a, int b, int c, int d)
+        private void MoveUpOrLeft(object sender, EventArgs e, string color, int a, int b, int c, int d)
         {
             // Loop through gameboard checking each pictureBox one at a time.
             for (int i = 0; i < 7; i++)
