@@ -195,7 +195,7 @@ namespace Grid_Lock
                 {
                     break;
                 }
-                for (int j = 0 + a; j < 6 + b; j++)
+                for (int j = 0 + b; j < 6 + a; j++)
                 {
                     //checks for the selected colour (i.e. Green)
                     if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + a, j + b].BackColor == gameBoard[i, j].BackColor))
