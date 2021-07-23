@@ -64,7 +64,10 @@ namespace Grid_Lock
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            ValidUp(this, e, comboBoxColour.Text);
+            int a = 1;
+            int b = 0;
+            int c = -1;
+            UpOrLeft(this, e, comboBoxColour.Text, a, b, c);
             
         }
 
@@ -74,7 +77,10 @@ namespace Grid_Lock
         }
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            ValidLeft(this, e, comboBoxColour.Text);
+            int a = 0;
+            int b = 1;
+            int c = 1;
+            UpOrLeft(this, e, comboBoxColour.Text, a, b, c);
         }
         private void btnRight_Click(object sender, EventArgs e)
         {
@@ -84,22 +90,6 @@ namespace Grid_Lock
         private void btnMiddle_Click(object sender, EventArgs e)
         {
 
-        }
-        private void MoveUp(object sender, EventArgs e, string color)
-        {
-            // Loop through gameboard checking each pictureBox one at a time.
-            for (int i = 0; i < 7; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text))
-                    {
-                        gameBoard[i - 1, j].BackColor = Color.FromName(color);
-                        gameBoard[i, j].BackColor = Color.White;
-                    }
-                }
-            }
         }
         private void MoveDown(object sender, EventArgs e, string color)
         {
@@ -117,23 +107,6 @@ namespace Grid_Lock
                 }
             }
         }
-        private void MoveLeft(object sender, EventArgs e, string color)
-        {
-            // Loop through gameboard checking each pictureBox one at a time.
-            for (int i = 0; i < 7; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text))
-                    {
-                        gameBoard[i, j - 1].BackColor = Color.FromName(color);
-                        gameBoard[i, j].BackColor = Color.White;
-                    }
-                }
-            }
-        }
-        
         private void MoveRight(object sender, EventArgs e, string color)
         {
             // Loop through gameboard checking each pictureBox one at a time.
@@ -146,43 +119,6 @@ namespace Grid_Lock
                     {
                         gameBoard[i, j + 1].BackColor = Color.FromName(color);
                         gameBoard[i, j].BackColor = Color.White;
-                    }
-                }
-            }
-        }
-        private void ValidUp(object sender, EventArgs e, string color)
-        {
-            bool flag = false;
-            for (int i = 1; i < 6; i++)
-            {
-                if (flag == true)
-                {
-                    break;
-                }
-                for (int j = 0; j < 7; j++)
-                {
-                    //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + 1, j].BackColor == gameBoard[i, j].BackColor))
-                    {
-                        if (gameBoard[i, j + 1].BackColor == gameBoard[i, j].BackColor)
-                        {
-                            if (gameBoard[i - 1, j + 1].BackColor != Color.White && gameBoard[i,j+1].BackColor == gameBoard[i,j].BackColor)
-                            {
-                                flag = true;
-                                break;
-                            }
-                            if (gameBoard[i-1,j].BackColor == Color.White)
-                            {
-                                MoveUp(this, e, comboBoxColour.Text);
-                                CheckWin(i-1, j);
-                            }
-                        }
-                        else if (gameBoard[i - 1, j].BackColor == Color.White)
-                        {
-                            MoveUp(this, e, comboBoxColour.Text);
-                        }
-                        flag = true;
-                        break;
                     }
                 }
             }
@@ -206,34 +142,6 @@ namespace Grid_Lock
                             if (gameBoard[i + 1, j].BackColor == Color.White)
                             {
                                 MoveDown(this, e, comboBoxColour.Text);
-                                flag = true;
-                                break;
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-        private void ValidLeft(object sender, EventArgs e, string color)
-        {
-            bool flag = false;
-            for (int i = 0; i < 7; i++)
-            {
-                if (flag == true)
-                {
-                    break;
-                }
-                for (int j = 1; j < 6; j++)
-                {
-                    //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text))
-                    {
-                        if (gameBoard[i, j+1].BackColor == gameBoard[i, j].BackColor)
-                        {
-                            if (gameBoard[i, j - 1].BackColor == Color.White)
-                            {
-                                MoveLeft(this, e, comboBoxColour.Text);
                                 flag = true;
                                 break;
                             }
@@ -278,36 +186,36 @@ namespace Grid_Lock
                 MessageBox.Show("Congrat's My Code Works!!!");
             }
         }
-        private void UpOrLeft(object sender, EventArgs e, string color, int a, int b, int c, int d)
+        private void UpOrLeft(object sender, EventArgs e, string color, int a, int b, int c)
         {
             bool flag = false;
-            for (int i = 1; i < 6; i++)
+            for (int i = 0 + a; i < 6 + b; i++)
             {
                 if (flag == true)
                 {
                     break;
                 }
-                for (int j = 0; j < 7; j++)
+                for (int j = 0 + a; j < 6 + b; j++)
                 {
                     //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + 1, j].BackColor == gameBoard[i, j].BackColor))
+                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + a, j + b].BackColor == gameBoard[i, j].BackColor))
                     {
                         if (gameBoard[i, j + 1].BackColor == gameBoard[i, j].BackColor)
                         {
-                            if (gameBoard[i - 1, j + 1].BackColor != Color.White && gameBoard[i, j + 1].BackColor == gameBoard[i, j].BackColor)
+                            if (gameBoard[i + c, j - c].BackColor != Color.White && gameBoard[i + b, j + a].BackColor == gameBoard[i, j].BackColor)
                             {
                                 flag = true;
                                 break;
                             }
-                            if (gameBoard[i - 1, j].BackColor == Color.White)
+                            if (gameBoard[i - a, j - b].BackColor == Color.White)
                             {
-                                MoveUpOrLeft(this, e, comboBoxColour.Text, a, b, c, d);
-                                CheckWin(i - 1, j);
+                                MoveUpOrLeft(this, e, comboBoxColour.Text, a, b);
+                                CheckWin(i - a, j - b);
                             }
                         }
-                        else if (gameBoard[i - 1, j].BackColor == Color.White)
+                        else if (gameBoard[i - a, j - b].BackColor == Color.White)
                         {
-                            MoveUpOrLeft(this, e, comboBoxColour.Text, a, b, c, d);
+                            MoveUpOrLeft(this, e, comboBoxColour.Text, a, b);
                         }
                         flag = true;
                         break;
@@ -315,7 +223,7 @@ namespace Grid_Lock
                 }
             }
         }
-        private void MoveUpOrLeft(object sender, EventArgs e, string color, int a, int b, int c, int d)
+        private void MoveUpOrLeft(object sender, EventArgs e, string color, int a, int b)
         {
             // Loop through gameboard checking each pictureBox one at a time.
             for (int i = 0; i < 7; i++)
@@ -325,7 +233,7 @@ namespace Grid_Lock
                     //checks for the selected colour (i.e. Green)
                     if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text))
                     {
-                        gameBoard[i - 1, j].BackColor = Color.FromName(color);
+                        gameBoard[i - a, j - b].BackColor = Color.FromName(color);
                         gameBoard[i, j].BackColor = Color.White;
                     }
                 }
