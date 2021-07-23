@@ -162,19 +162,27 @@ namespace Grid_Lock
                 for (int j = 0; j < 7; j++)
                 {
                     //checks for the selected colour (i.e. Green)
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text))
+                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + 1, j].BackColor == gameBoard[i, j].BackColor))
                     {
-                        if (gameBoard[i + 1, j].BackColor == gameBoard[i, j].BackColor )
+                        if (gameBoard[i, j + 1].BackColor == gameBoard[i, j].BackColor)
                         {
-                            if (gameBoard[i - 1, j].BackColor == Color.White)
+                            if (gameBoard[i - 1, j + 1].BackColor != Color.White && gameBoard[i,j+1].BackColor == gameBoard[i,j].BackColor)
                             {
-                                MoveUp(this, e, comboBoxColour.Text);
                                 flag = true;
                                 break;
-                                
+                            }
+                            if (gameBoard[i-1,j].BackColor == Color.White)
+                            {
+                                MoveUp(this, e, comboBoxColour.Text);
+                                CheckWin(i-1, j);
                             }
                         }
-                        
+                        else if (gameBoard[i - 1, j].BackColor == Color.White)
+                        {
+                            MoveUp(this, e, comboBoxColour.Text);
+                        }
+                        flag = true;
+                        break;
                     }
                 }
             }
@@ -261,6 +269,13 @@ namespace Grid_Lock
 
                     }
                 }
+            }
+        }
+        private void CheckWin(int i, int j)
+        {
+            if (j  == 5 && i == 2)
+            {
+                MessageBox.Show("Congrat's My Code Works!!!");
             }
         }
     }
