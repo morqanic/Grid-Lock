@@ -748,7 +748,7 @@ namespace Grid_Lock
             "Black"});
             this.comboBoxColour.Location = new System.Drawing.Point(62, 104);
             this.comboBoxColour.Name = "comboBoxColour";
-            this.comboBoxColour.Size = new System.Drawing.Size(301, 28);
+            this.comboBoxColour.Size = new System.Drawing.Size(269, 28);
             this.comboBoxColour.TabIndex = 76;
             this.comboBoxColour.SelectedIndexChanged += new System.EventHandler(this.comboBoxColour_SelectedIndexChanged);
             // 
