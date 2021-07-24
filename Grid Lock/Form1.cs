@@ -80,33 +80,40 @@ namespace Grid_Lock
             int z = 0;
             Mover(this, e, comboBoxColour.Text, a, b, c, x, y, z);
         }
-        private void Mover(object sender, EventArgs e, string color, int a, int b, int c, int x, int y, int z)
+        private void Mover(object sender, EventArgs e, string color, int startModifier, int endModifier, bool change, int iWhite, int jWhite, int iSame, int jSame, int i4x4, int j4x4, int i4x4White, int j4x4White)
         {
             bool flag = false;
-            for (int i = 0 + a; i < 6 + b; i++)
+            for (int iFalse = 0 + startModifier; iFalse < 6 + endModifier; iFalse ++)
             {
                 if (flag == true)
                 {
                     break;
                 }
-                for (int j = 0 + b; j < 6 + a; j++)
+                for (int jFalse = 5 + startModifier; jFalse > -1 + endModifier; jFalse += -1)
                 {
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + a, j + b].BackColor == gameBoard[i, j].BackColor))
+                    int i = iFalse;
+                    int j = jFalse;
+                    if(change == true)
                     {
-                        if (gameBoard[i, j + 1].BackColor == gameBoard[i, j].BackColor)
+                        i = jFalse;
+                        j = iFalse;
+                    }
+                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + iSame, j+ jSame].BackColor == gameBoard[i, j].BackColor))
+                    {
+                        if (gameBoard[i + i4x4, j + i4x4].BackColor == gameBoard[i, j].BackColor)
                         {
-                            if (gameBoard[i + c, j - c].BackColor != Color.White && gameBoard[i + b, j + a].BackColor == gameBoard[i, j].BackColor)
+                            if (gameBoard[i + i4x4White, j + j4x4White].BackColor != Color.White && gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
                             {
                                 flag = true;
                                 break;
                             }
-                            if (gameBoard[i - a, j - b].BackColor == Color.White)
+                            if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                             {
                                 ActuallyMove(this, e, comboBoxColour.Text, a, b);
-                                CheckWin(i - a, j - b);
+                                CheckWin(i + iWhite, j + jWhite);
                             }
                         }
-                        else if (gameBoard[i - a, j - b].BackColor == Color.White)
+                        else if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                         {
                             ActuallyMove(this, e, comboBoxColour.Text, a, b);
                         }
