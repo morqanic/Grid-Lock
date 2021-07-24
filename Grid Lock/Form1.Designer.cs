@@ -34,7 +34,6 @@ namespace Grid_Lock
             this.btnDown = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnMiddle = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -88,6 +87,7 @@ namespace Grid_Lock
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
             this.comboBoxColour = new System.Windows.Forms.ComboBox();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.btnMiddle = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -207,19 +207,6 @@ namespace Grid_Lock
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Controls to Move";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // btnMiddle
-            // 
-            this.btnMiddle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnMiddle.Font = new System.Drawing.Font("Wingdings 3", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMiddle.Location = new System.Drawing.Point(113, 113);
-            this.btnMiddle.Name = "btnMiddle";
-            this.btnMiddle.Size = new System.Drawing.Size(75, 75);
-            this.btnMiddle.TabIndex = 16;
-            this.btnMiddle.UseVisualStyleBackColor = false;
-            this.btnMiddle.Click += new System.EventHandler(this.btnMiddle_Click);
             // 
             // pictureBox7
             // 
@@ -711,7 +698,6 @@ namespace Grid_Lock
             this.groupBox2.TabIndex = 73;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gameboard";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // pictureBox1
             // 
@@ -750,7 +736,6 @@ namespace Grid_Lock
             this.comboBoxColour.Name = "comboBoxColour";
             this.comboBoxColour.Size = new System.Drawing.Size(269, 28);
             this.comboBoxColour.TabIndex = 76;
-            this.comboBoxColour.SelectedIndexChanged += new System.EventHandler(this.comboBoxColour_SelectedIndexChanged);
             // 
             // lbl1
             // 
@@ -760,6 +745,17 @@ namespace Grid_Lock
             this.lbl1.Size = new System.Drawing.Size(168, 20);
             this.lbl1.TabIndex = 75;
             this.lbl1.Text = "Select a Colour to Move";
+            // 
+            // btnMiddle
+            // 
+            this.btnMiddle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnMiddle.Font = new System.Drawing.Font("Wingdings 3", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnMiddle.Location = new System.Drawing.Point(113, 113);
+            this.btnMiddle.Name = "btnMiddle";
+            this.btnMiddle.Size = new System.Drawing.Size(75, 75);
+            this.btnMiddle.TabIndex = 17;
+            this.btnMiddle.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -889,8 +885,8 @@ namespace Grid_Lock
         private System.Windows.Forms.PictureBox pictureBox50;
         private System.Windows.Forms.ComboBox comboBoxColour;
         private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Button btnMiddle;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnMiddle;
     }
 }
 
