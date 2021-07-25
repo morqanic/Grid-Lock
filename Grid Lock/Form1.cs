@@ -15,6 +15,8 @@ namespace Grid_Lock
     public partial class Form1 : Form
     {
         PictureBox[,] gameBoard = new PictureBox[7, 7];
+        private object variables;
+
         public Form1()
         {
             InitializeComponent();
@@ -41,66 +43,40 @@ namespace Grid_Lock
         }
         private void btnUp_Click(object sender, EventArgs e)
         {
-            int startModifier = 1;
-            int endModifier = 0;
             bool change = false;
-            int iWhite = -1;
-            int jWhite = 0;
-            int iSame = 1;
-            int jSame = 0;
-            int i4x4 = 0;
-            int j4x4 = -1;
-            int i4x4White = -1;
-            int j4x4White = -1;
-            Mover(this, e, comboBoxColour.Text, startModifier, endModifier, change, iWhite, jWhite, iSame, jSame, i4x4, j4x4, i4x4White, j4x4White);
+            List<int> variablesList = new List<int>() { 1, 0, -1, 0, 1, 0, 0, -1, -1, -1 };
+            Verify(this, e, comboBoxColour.Text, change, variablesList);
         }
         private void btnDown_Click(object sender, EventArgs e)
         {
-            int startModifier = 0;
-            int endModifier = 1;
             bool change = true;
-            int iWhite = 1;
-            int jWhite = 0;
-            int iSame = -1;
-            int jSame = 0;
-            int i4x4 = 0;
-            int j4x4 = 1;
-            int i4x4White = 1;
-            int j4x4White = 1;
-            Mover(this, e, comboBoxColour.Text, startModifier, endModifier, change, iWhite, jWhite, iSame, jSame, i4x4, j4x4, i4x4White, j4x4White);
+            List<int> variablesList = new List<int>() { 0, 1, 1, 0, -1, 0, 0, 1, 1, 1 };
+            Verify(this, e, comboBoxColour.Text, change, variablesList);
         }
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            int startModifier = 1;
-            int endModifier = 0;
             bool change = true;
-            int iWhite = 0;
-            int jWhite = -1;
-            int iSame = 0;
-            int jSame = 1;
-            int i4x4 = -1;
-            int j4x4 = 0;
-            int i4x4White = -1;
-            int j4x4White = -1;
-            Mover(this, e, comboBoxColour.Text, startModifier, endModifier, change, iWhite, jWhite, iSame, jSame, i4x4, j4x4, i4x4White, j4x4White);
+            List<int> variablesList = new List<int>() { 1, 0, 0, -1, 0, 1, -1, 0, -1, -1 };
+            Verify(this, e, comboBoxColour.Text, change, variablesList);
         }
         private void btnRight_Click(object sender, EventArgs e)
         {
-            int startModifier = 0;
-            int endModifier = 1;
             bool change = false;
-            int iWhite = 0;
-            int jWhite = 1;
-            int iSame = 0;
-            int jSame = -1;
-            int i4x4 = 1;
-            int j4x4 = 0;
-            int i4x4White = 1;
-            int j4x4White = 1;
-            Mover(this, e, comboBoxColour.Text, startModifier, endModifier, change, iWhite, jWhite, iSame, jSame, i4x4, j4x4, i4x4White, j4x4White);
+            List<int> variablesList = new List<int>() { 0, 1, 0, 1, 0, -1, 1, 0, 1, 1 };
+            Verify(this, e, comboBoxColour.Text, change, variablesList);
         }
-        private void Mover(object sender, EventArgs e, string color, int startModifier, int endModifier, bool change, int iWhite, int jWhite, int iSame, int jSame, int i4x4, int j4x4, int i4x4White, int j4x4White)
+        private void Verify(object sender, EventArgs e, string color, bool change, List<int> variablesList)
         {
+            int startModifier = variablesList[0];
+            int endModifier = variablesList[1];
+            int iWhite = variablesList[2];
+            int jWhite = variablesList[3];
+            int iSame = variablesList[4];
+            int jSame = variablesList[5];
+            int i4x4 = variablesList[6];
+            int j4x4 = variablesList[7];
+            int i4x4White = variablesList[8];
+            int j4x4White = variablesList[9];
             bool flag = false;
             for (int iFalse = 0 + startModifier; iFalse < 6 + endModifier; iFalse ++)
             {
@@ -119,22 +95,25 @@ namespace Grid_Lock
                     }
                     if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + iSame, j+ jSame].BackColor == gameBoard[i, j].BackColor))
                     {
-                        if (gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
+                        if (i + i4x4 != -1 && i + i4x4 != 7 && j + j4x4 != -1 && j + j4x4 != 7)
                         {
-                            if (gameBoard[i + i4x4White, j + j4x4White].BackColor != Color.White && gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
+                            if (gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
                             {
-                                flag = true;
-                                break;
-                            }
-                            if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
-                            {
-                                ActuallyMove(this, e, comboBoxColour.Text, change, iWhite, jWhite);
-                                CheckWin(change, i + iWhite, j + jWhite);
+                                if (gameBoard[i + i4x4White, j + j4x4White].BackColor != Color.White && gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
+                                {
+                                    flag = true;
+                                    break;
+                                }
+                                if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
+                                {
+                                    Move(this, e, comboBoxColour.Text, change, iWhite, jWhite);
+                                    CheckWin(change, i + iWhite, j + jWhite);
+                                }
                             }
                         }
                         else if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                         {
-                            ActuallyMove(this, e, comboBoxColour.Text, change, iWhite, jWhite);
+                            Move(this, e, comboBoxColour.Text, change, iWhite, jWhite);
                         }
                         flag = true;
                         break;
@@ -142,7 +121,7 @@ namespace Grid_Lock
                 }
             }
         }
-        private void ActuallyMove(object sender, EventArgs e, string color, bool change, int iWhite, int jWhite)
+        private void Move(object sender, EventArgs e, string color, bool change, int iWhite, int jWhite)
         {
             for (int iFalse = 0; iFalse < 7; iFalse++)
             {
