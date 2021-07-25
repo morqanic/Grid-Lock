@@ -111,7 +111,7 @@ namespace Grid_Lock
                                 }
                             }
                         }
-                        else if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
+                        if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                         {
                             Move(this, e, comboBoxColour.Text, change, iWhite, jWhite);
                         }
