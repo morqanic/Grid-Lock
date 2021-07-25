@@ -21,7 +21,8 @@ namespace Grid_Lock
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            string[][] startingConfigArray = File.ReadLines(@"startingconfig.csv").Select(x => x.Split(',')).ToArray();//this ine is borowed from https://stackoverflow.com/questions/18806757/parsing-csv-file-into-2d-array/43528767 - I know enough to figure out how to use it but not enough to be able to recreate it.
+            MessageBox.Show("Welcome to Grid Lock, a game based off of the game \"Rush Hour\". \nThis was made as a part of my Year 11 Programming Project and has 174 lines of code. \n \nThe aim of the game is to get the 2x2 square to the finish (illustrated by a grey rectangle). Vertical pieces can only move vertically and horizontal pieces can only move horizontally.  \n \nTimer Starts on OK!!" );
+            string[][] startingConfigArray = File.ReadLines(@"startingConfigArray.csv").Select(x => x.Split(',')).ToArray();//this ine is borowed from https://stackoverflow.com/questions/18806757/parsing-csv-file-into-2d-array/43528767 - I know enough to figure out how to use it but not enough to be able to recreate it.
             BoardLoad(this, e, startingConfigArray);
         }
         private void BoardLoad(object sender, EventArgs e, string[][] configArray)
@@ -47,19 +48,7 @@ namespace Grid_Lock
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                InitialDirectory = @"D:\",
-                Title = "Browse Text Files",
-
-                CheckFileExists = true,
-                CheckPathExists = true,
-
-                DefaultExt = "csv",
                 Filter = "csv files (*.csv)|*.csv",
-                FilterIndex = 2,
-                RestoreDirectory = true,
-
-                ReadOnlyChecked = true,
-                ShowReadOnly = true
             };
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -100,10 +89,10 @@ namespace Grid_Lock
             int jWhite = variablesList[3];
             int iSame = variablesList[4];
             int jSame = variablesList[5];
-            int i4x4 = variablesList[6];
-            int j4x4 = variablesList[7];
-            int i4x4White = variablesList[8];
-            int j4x4White = variablesList[9];
+            int i2x2 = variablesList[6];
+            int j2x2 = variablesList[7];
+            int i2x2White = variablesList[8];
+            int j2x2White = variablesList[9];
             bool flag = false;
             for (int iFalse = 0 + startModifier; iFalse < 6 + endModifier; iFalse++)
             {
@@ -122,11 +111,11 @@ namespace Grid_Lock
                     }
                     if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + iSame, j + jSame].BackColor == gameBoard[i, j].BackColor))
                     {
-                        if (i + i4x4 != -1 && i + i4x4 != 7 && j + j4x4 != -1 && j + j4x4 != 7)
+                        if (i + i2x2 != -1 && i + i2x2 != 7 && j + j2x2 != -1 && j + j2x2 != 7)
                         {
-                            if (gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
+                            if (gameBoard[i + i2x2, j + j2x2].BackColor == gameBoard[i, j].BackColor)
                             {
-                                if (gameBoard[i + i4x4White, j + j4x4White].BackColor != Color.White && gameBoard[i + i4x4, j + j4x4].BackColor == gameBoard[i, j].BackColor)
+                                if (gameBoard[i + i2x2White, j + j2x2White].BackColor != Color.White && gameBoard[i + i2x2, j + j2x2].BackColor == gameBoard[i, j].BackColor)
                                 {
                                     flag = true;
                                     break;
