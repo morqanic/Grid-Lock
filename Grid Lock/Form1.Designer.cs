@@ -29,6 +29,7 @@ namespace Grid_Lock
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
@@ -89,7 +90,8 @@ namespace Grid_Lock
             this.comboBoxColour = new System.Windows.Forms.ComboBox();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnBrowser = new System.Windows.Forms.Button();
-            this.btnTime = new System.Windows.Forms.Button();
+            this.btnTimer = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -773,25 +775,30 @@ namespace Grid_Lock
             this.btnBrowser.UseVisualStyleBackColor = false;
             this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
             // 
-            // btnTime
+            // btnTimer
             // 
-            this.btnTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnTime.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnTime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnTime.Location = new System.Drawing.Point(256, 160);
-            this.btnTime.Name = "btnTime";
-            this.btnTime.Size = new System.Drawing.Size(75, 28);
-            this.btnTime.TabIndex = 77;
-            this.btnTime.Text = "Time";
-            this.btnTime.UseVisualStyleBackColor = false;
+            this.btnTimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnTimer.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnTimer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnTimer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnTimer.Location = new System.Drawing.Point(256, 160);
+            this.btnTimer.Name = "btnTimer";
+            this.btnTimer.Size = new System.Drawing.Size(75, 28);
+            this.btnTimer.TabIndex = 77;
+            this.btnTimer.Text = "0";
+            this.btnTimer.UseVisualStyleBackColor = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 583);
-            this.Controls.Add(this.btnTime);
+            this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnBrowser);
             this.Controls.Add(this.comboBoxColour);
             this.Controls.Add(this.lbl1);
@@ -919,7 +926,8 @@ namespace Grid_Lock
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnMiddle;
         private System.Windows.Forms.Button btnBrowser;
-        private System.Windows.Forms.Button btnTime;
+        private System.Windows.Forms.Button btnTimer;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
