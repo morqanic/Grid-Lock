@@ -15,8 +15,6 @@ namespace Grid_Lock
     public partial class Form1 : Form
     {
         PictureBox[,] gameBoard = new PictureBox[7, 7];
-        private object variables;
-
         public Form1()
         {
             InitializeComponent();
@@ -106,14 +104,14 @@ namespace Grid_Lock
                                 }
                                 if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                                 {
-                                    Move(this, e, comboBoxColour.Text, change, iWhite, jWhite);
+                                    Mover(this, e, comboBoxColour.Text, change, iWhite, jWhite);
                                     CheckWin(change, i + iWhite, j + jWhite);
                                 }
                             }
                         }
                         if (gameBoard[i + iWhite, j + jWhite].BackColor == Color.White)
                         {
-                            Move(this, e, comboBoxColour.Text, change, iWhite, jWhite);
+                            Mover(this, e, comboBoxColour.Text, change, iWhite, jWhite);
                         }
                         flag = true;
                         break;
@@ -121,7 +119,7 @@ namespace Grid_Lock
                 }
             }
         }
-        private void Move(object sender, EventArgs e, string color, bool change, int iWhite, int jWhite)
+        private void Mover(object sender, EventArgs e, string color, bool change, int iWhite, int jWhite)
         {
             for (int iFalse = 0; iFalse < 7; iFalse++)
             {
