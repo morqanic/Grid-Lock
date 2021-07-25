@@ -21,7 +21,12 @@ namespace Grid_Lock
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            int index = 1; 
+            string[][] startingConfigArray = File.ReadLines(@"startingconfig.csv").Select(x => x.Split(',')).ToArray();//this ine is borowed from https://stackoverflow.com/questions/18806757/parsing-csv-file-into-2d-array/43528767 - I know enough to figure out how to use it but not enough to be able to recreate it.
+            BoardLoad(this, e, startingConfigArray);
+        }
+        private void BoardLoad(object sender, EventArgs e, string[][] configArray)
+        {
+            int index = 1;
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -30,13 +35,37 @@ namespace Grid_Lock
                     index++;
                 }
             }
-            string[][] startingConfigArray = File.ReadLines(@"startingconfig.csv").Select(x => x.Split(',')).ToArray();//this ine is borowed from https://stackoverflow.com/questions/18806757/parsing-csv-file-into-2d-array/43528767 - I know enough to figure out how to use it but not enough to be able to recreate it.
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    gameBoard[i, j].BackColor = Color.FromName(startingConfigArray[i][j]);
+                    gameBoard[i, j].BackColor = Color.FromName(configArray[i][j]);
                 }
+            }
+        }
+        private void btnBrowser_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = @"D:\",
+                Title = "Browse Text Files",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "csv",
+                Filter = "csv files (*.csv)|*.csv",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[][] configArray = File.ReadLines(openFileDialog1.FileName).Select(x => x.Split(',')).ToArray();//this ine is borowed from https://stackoverflow.com/questions/18806757/parsing-csv-file-into-2d-array/43528767 - I know enough to figure out how to use it but not enough to be able to recreate it.
+                BoardLoad(this, e, configArray);
             }
         }
         private void btnUp_Click(object sender, EventArgs e)
@@ -76,7 +105,7 @@ namespace Grid_Lock
             int i4x4White = variablesList[8];
             int j4x4White = variablesList[9];
             bool flag = false;
-            for (int iFalse = 0 + startModifier; iFalse < 6 + endModifier; iFalse ++)
+            for (int iFalse = 0 + startModifier; iFalse < 6 + endModifier; iFalse++)
             {
                 if (flag == true)
                 {
@@ -86,12 +115,12 @@ namespace Grid_Lock
                 {
                     int i = iFalse;
                     int j = jFalse;
-                    if(change == true)
+                    if (change == true)
                     {
                         i = jFalse;
                         j = iFalse;
                     }
-                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + iSame, j+ jSame].BackColor == gameBoard[i, j].BackColor))
+                    if (gameBoard[i, j].BackColor == Color.FromName(comboBoxColour.Text) && (gameBoard[i + iSame, j + jSame].BackColor == gameBoard[i, j].BackColor))
                     {
                         if (i + i4x4 != -1 && i + i4x4 != 7 && j + j4x4 != -1 && j + j4x4 != 7)
                         {
@@ -123,7 +152,7 @@ namespace Grid_Lock
         {
             for (int iFalse = 0; iFalse < 7; iFalse++)
             {
-                for (int jFalse = 6; jFalse > -1; jFalse+= -1)
+                for (int jFalse = 6; jFalse > -1; jFalse += -1)
                 {
                     int i = iFalse;
                     int j = jFalse;
@@ -142,7 +171,7 @@ namespace Grid_Lock
         }
         private void CheckWin(bool change, int i, int j)
         {
-            if(change == true)
+            if (change == true)
             {
                 i += -1;
                 j += 1;

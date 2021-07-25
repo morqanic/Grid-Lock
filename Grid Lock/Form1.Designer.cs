@@ -34,6 +34,7 @@ namespace Grid_Lock
             this.btnDown = new System.Windows.Forms.Button();
             this.btnLeft = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMiddle = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -87,7 +88,8 @@ namespace Grid_Lock
             this.pictureBox50 = new System.Windows.Forms.PictureBox();
             this.comboBoxColour = new System.Windows.Forms.ComboBox();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.btnMiddle = new System.Windows.Forms.Button();
+            this.btnBrowser = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -207,6 +209,17 @@ namespace Grid_Lock
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Controls to Move";
+            // 
+            // btnMiddle
+            // 
+            this.btnMiddle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnMiddle.Font = new System.Drawing.Font("Wingdings 3", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnMiddle.Location = new System.Drawing.Point(113, 113);
+            this.btnMiddle.Name = "btnMiddle";
+            this.btnMiddle.Size = new System.Drawing.Size(75, 75);
+            this.btnMiddle.TabIndex = 17;
+            this.btnMiddle.UseVisualStyleBackColor = false;
             // 
             // pictureBox7
             // 
@@ -746,22 +759,33 @@ namespace Grid_Lock
             this.lbl1.TabIndex = 75;
             this.lbl1.Text = "Select a Colour to Move";
             // 
-            // btnMiddle
+            // btnBrowser
             // 
-            this.btnMiddle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnMiddle.Font = new System.Drawing.Font("Wingdings 3", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMiddle.Location = new System.Drawing.Point(113, 113);
-            this.btnMiddle.Name = "btnMiddle";
-            this.btnMiddle.Size = new System.Drawing.Size(75, 75);
-            this.btnMiddle.TabIndex = 17;
-            this.btnMiddle.UseVisualStyleBackColor = false;
+            this.btnBrowser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnBrowser.Font = new System.Drawing.Font("Wingdings 3", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBrowser.Location = new System.Drawing.Point(62, 160);
+            this.btnBrowser.Name = "btnBrowser";
+            this.btnBrowser.Size = new System.Drawing.Size(107, 28);
+            this.btnBrowser.TabIndex = 18;
+            this.btnBrowser.UseVisualStyleBackColor = false;
+            this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(210, 161);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(120, 27);
+            this.textBox1.TabIndex = 77;
+            this.textBox1.Text = "temp";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 583);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnBrowser);
             this.Controls.Add(this.comboBoxColour);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.groupBox2);
@@ -887,6 +911,8 @@ namespace Grid_Lock
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnMiddle;
+        private System.Windows.Forms.Button btnBrowser;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
