@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 
-
 namespace Grid_Lock
 {
     public partial class Form1 : Form
@@ -19,7 +18,7 @@ namespace Grid_Lock
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Welcome to Grid Lock, a game based off the board game \"Rush Hour\". \nThis was made as a part of my Year 11 Programming Project and has 170 lines of code. \n \nThe aim of the game is to get the 2x2 square to the finish (illustrated by a grey rectangle). Vertical pieces can only move vertically and horizontal pieces can only move horizontally.  \n \nTimer Starts on OK!!" );
+            MessageBox.Show("Welcome to Grid Lock, a game based off the board game \"Rush Hour\". \nThis was made as a part of my Year 11 Programming Project and has 1(69) ( ͡° ͜ʖ ͡°)  lines of code. \n \nThe aim of the game is to get the 2x2 square to the finish (illustrated by a grey rectangle). Vertical pieces can only move vertically and horizontal pieces can only move horizontally.  \n \nTimer Starts on OK!!");
             BoardLoad(this, e, File.ReadLines(@"startingConfigArray.csv").Select(x => x.Split(',')).ToArray());
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -163,7 +162,7 @@ namespace Grid_Lock
             if (j == 6 && i == 2)
             {
                 timer1.Stop();
-                MessageBox.Show("Congrat's My Code Works!!! (Oh and you won) \nYour time was " + seconds + " seconds!!! \n \nTo start a new game load a new board.");
+                MessageBox.Show("Congrat's My Code Works!!! (Oh and you won) \nYour time was " + seconds + " seconds!\n \nTo start a new game load a new board.");
             }
         }
     }

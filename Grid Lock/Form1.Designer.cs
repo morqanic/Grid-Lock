@@ -771,7 +771,7 @@ namespace Grid_Lock
             this.btnBrowser.Name = "btnBrowser";
             this.btnBrowser.Size = new System.Drawing.Size(188, 28);
             this.btnBrowser.TabIndex = 18;
-            this.btnBrowser.Text = "Change Gameboard";
+            this.btnBrowser.Text = "New Gameboard";
             this.btnBrowser.UseVisualStyleBackColor = false;
             this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
             // 
